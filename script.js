@@ -1,43 +1,31 @@
-function generateSquares(numSquares) {
-    let container = document.getElementById("container");
-    removeAllChildNodes(container);
-    let squareWidth = parseInt(100 / numSquares)  + "%";
-    let colorField = document.getElementById("colorField");
-    let newColor = colorField.value;
-    for (let i = 0; i < numSquares; i++) {
-        for (let j = 0; j < numSquares; j++) {
-            let square = document.createElement('div');
-            square.classList.add('square');
-            square.style.width = squareWidth
-            square.style.opacity = "0%"
-            square.style.background = newColor
-            square.addEventListener('mouseover', hoverSquare);
-            container.appendChild(square);
+function createDivs(row, col) {
+    const container = document.getElementById("container");
+    container.replaceChildren();
+    const color = document.getElementById("color").value;
+    for (let i = 0; i < row; i++) {
+        const divRow = document.createElement("div");
+        divRow.classList.add("divRow");
+        container.appendChild(divRow);
+        for (let j = 0; j < col; j++) {
+            const div = document.createElement("div");
+            div.addEventListener("mouseover", (event) => event.target.style.background = color);
+            div.classList.add("divElement");
+            divRow.appendChild(div);
         }
     }
 }
 
-function removeAllChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
+function generateGrid() {
+    const row = Number(document.getElementById("row").value);
+    const col = Number(document.getElementById("col").value);
+    if (isNaN(row) || isNaN(col) || row < 1 || col < 1) {
+        alert("Please enter valid integers larger than 0");
+        return;
     }
+    createDivs(row, col);
 }
 
-function hoverSquare(e) {
-    let curOpacity = e.target.style.opacity;
-    curOpacity = Number(curOpacity);
-    curOpacity += .10;
-    e.target.style.opacity = curOpacity;
-}
+const button = document.getElementById("submit");
+button.addEventListener("click", generateGrid);
 
-function newGrid(e) {
-    let sizeField = document.getElementById("sizeField");
-    let newSize = sizeField.value;
-    generateSquares(newSize);
-}
-
-let btn = document.getElementById("sizeButton");
-btn.addEventListener('click', newGrid);
-
-generateSquares(25);
-
+createDivs(150, 150);

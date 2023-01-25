@@ -5,22 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="navBar">
-        <div id="newGrid">
-            <p>Grid Size: </p>
-            <input type="text" value="25" id="sizeField">
+    <div id="header">
+        <div>
+            <label for="row">Number of rows:</label>
+            <input type="text" id="row" name="row">
         </div>
-        <button id="sizeButton">New Grid (Clear)</button>
-        <div id="colorChange">
-            <p>Color: </p>
-            <input type="color" value="#c28fbf" id="colorField">
+        <div>
+            <label for="col">Number of columns:</label>
+            <input type="text" id="col" name="col">
         </div>
+        <div>
+            <label for="color">Color:</label>
+            <input type="color" id="color" name="color">
+        </div>
+        <button id="submit">Generate Grid!</button>
     </div>
-        
-    <div id="container"></div>
-    <script src="script.js"></script>
+    <div id="container">
+
+    </div>
 </body>
 </html>
